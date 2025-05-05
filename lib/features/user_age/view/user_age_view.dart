@@ -42,6 +42,8 @@ class UserAgeView extends StatelessWidget {
                 GoRouter.of(context).pushNamed('addTruthDare');
               },
               btnTitle: "kids",
+              mainBtnBgPath: Assets.images.svg.gameFilledBtn,
+              circularBtnBgPath: Assets.images.svg.gameCircularBtn,
               circularIconPath: Assets.images.svg.kids,
             ),
 
@@ -52,6 +54,8 @@ class UserAgeView extends StatelessWidget {
               circularIconOnTap: () {},
               btnOnTap: () {},
               btnTitle: "Teens",
+              mainBtnBgPath: Assets.images.svg.gameFilledBtn,
+              circularBtnBgPath: Assets.images.svg.gameCircularBtn,
               circularIconPath: Assets.images.svg.teens,
             ),
 
@@ -62,6 +66,8 @@ class UserAgeView extends StatelessWidget {
               circularIconOnTap: () {},
               btnOnTap: () {},
               btnTitle: "Adults",
+              mainBtnBgPath: Assets.images.svg.gameFilledBtn,
+              circularBtnBgPath: Assets.images.svg.gameCircularBtn,
               circularIconPath: Assets.images.svg.adults,
             ),
 

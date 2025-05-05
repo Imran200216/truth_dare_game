@@ -42,6 +42,8 @@ class GameIntroView extends StatelessWidget {
                 GoRouter.of(context).pushNamed('userAge');
               },
               btnTitle: "Let's Play",
+              mainBtnBgPath: Assets.images.svg.gameFilledBtn,
+              circularBtnBgPath: Assets.images.svg.gameCircularBtn,
               circularIconPath: Assets.images.svg.play,
             ),
 
@@ -52,6 +54,8 @@ class GameIntroView extends StatelessWidget {
               circularIconOnTap: () {},
               btnOnTap: () {},
               btnTitle: "Settings",
+              mainBtnBgPath: Assets.images.svg.gameFilledBtn,
+              circularBtnBgPath: Assets.images.svg.gameCircularBtn,
               circularIconPath: Assets.images.svg.settings,
             ),
 
@@ -62,6 +66,8 @@ class GameIntroView extends StatelessWidget {
               circularIconOnTap: () {},
               btnOnTap: () {},
               btnTitle: "Rate Us",
+              mainBtnBgPath: Assets.images.svg.gameFilledBtn,
+              circularBtnBgPath: Assets.images.svg.gameCircularBtn,
               circularIconPath: Assets.images.svg.star,
             ),
           ],

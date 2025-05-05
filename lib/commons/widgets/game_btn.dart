@@ -54,6 +54,7 @@ class GameBtn extends StatelessWidget {
                       fit: BoxFit.contain,
                     ),
                     GameOutlinedText(
+                      hasStroke: false,
                       text: btnTitle,
                       fontSize: btnFontSize,
                       strokeColor: btnTitleStrokeColor,

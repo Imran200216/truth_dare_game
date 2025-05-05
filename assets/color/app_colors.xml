@@ -2,4 +2,7 @@
     <color name="primary">#FE6C56</color>
     <color name="secondary">#2069C7</color>
     <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="appBarBg">#67C9F7</color>
+
 </resources>

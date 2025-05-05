@@ -31,14 +31,16 @@ class AddTruthDareView extends StatelessWidget {
 
               GameVerticalSpacer(height: 40),
 
-              // Let's play
+              // Add Truth Dare
               GamePlayRow(
                 circularIconOnTap: () {},
                 btnOnTap: () {
-                  //
-                  GoRouter.of(context).pushNamed('userAge');
+                  // add player view
+                  GoRouter.of(context).pushNamed('addPlayers');
                 },
                 btnTitle: "Add Truth",
+                circularBtnBgPath: Assets.images.svg.gameCircularBtn,
+                mainBtnBgPath: Assets.images.svg.gameFilledBtn,
                 circularIconPath: Assets.images.svg.add,
               ),
 
@@ -49,6 +51,8 @@ class AddTruthDareView extends StatelessWidget {
                 circularIconOnTap: () {},
                 btnOnTap: () {},
                 btnTitle: "Add Dare",
+                circularBtnBgPath: Assets.images.svg.gameCircularBtn,
+                mainBtnBgPath: Assets.images.svg.gameFilledBtn,
                 circularIconPath: Assets.images.svg.add,
               ),
 
@@ -59,6 +63,8 @@ class AddTruthDareView extends StatelessWidget {
                 circularIconOnTap: () {},
                 btnOnTap: () {},
                 btnTitle: "Sound On",
+                circularBtnBgPath: Assets.images.svg.gameCircularBtn,
+                mainBtnBgPath: Assets.images.svg.gameFilledBtn,
                 circularIconPath: Assets.images.svg.music,
               ),
 
@@ -69,11 +75,14 @@ class AddTruthDareView extends StatelessWidget {
                 circularIconOnTap: () {},
                 btnOnTap: () {},
                 btnTitle: "Share",
+                circularBtnBgPath: Assets.images.svg.gameCircularBtn,
+                mainBtnBgPath: Assets.images.svg.gameFilledBtn,
                 circularIconPath: Assets.images.svg.share,
               ),
 
               const Spacer(),
 
+              // back btn
               GameCircularBtn(
                 onTap: () {
                   GoRouter.of(context).pop();
