@@ -5,6 +5,7 @@ import 'package:truth_dare_game/commons/commons_exports.dart';
 import 'package:truth_dare_game/generators/assets.gen.dart';
 import 'package:truth_dare_game/generators/colors.gen.dart';
 import 'package:truth_dare_game/generators/fonts.gen.dart';
+import 'package:truth_dare_game/core/core_exports.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -21,7 +22,7 @@ class _SplashViewState extends State<SplashView> {
     // Start a 3-second timer
     Timer(const Duration(seconds: 3), () {
       // Navigate to GameIntroView
-      GoRouter.of(context).pushReplacementNamed('gameIntro');
+      GoRouter.of(context).pushReplacementNamed(RouteConstants.gameIntroView);
     });
   }
 
@@ -46,7 +47,7 @@ class _SplashViewState extends State<SplashView> {
 
             // App name
             GameOutlinedText(
-              text: "Truth Dare Game",
+              text: AppConstants.appNameText,
               fontSize: 32,
               strokeColor: ColorName.primary,
               fillColor: ColorName.white,
@@ -57,7 +58,7 @@ class _SplashViewState extends State<SplashView> {
 
             // App edition
             GameOutlinedText(
-              text: "Ultimate Edition",
+              text: AppConstants.appEditionText,
               fontSize: 25,
               strokeColor: ColorName.secondary,
               fillColor: ColorName.white,

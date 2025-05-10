@@ -4,6 +4,7 @@ import 'package:truth_dare_game/commons/commons_exports.dart';
 import 'package:truth_dare_game/generators/assets.gen.dart';
 import 'package:truth_dare_game/generators/colors.gen.dart';
 import 'package:truth_dare_game/generators/fonts.gen.dart';
+import 'package:truth_dare_game/core/core_exports.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -20,7 +21,7 @@ class HomeView extends StatelessWidget {
             children: [
               // App name
               GameOutlinedText(
-                text: "Truth Dare Game",
+                text: AppConstants.appNameText,
                 fontSize: 32,
                 strokeColor: ColorName.primary,
                 fillColor: ColorName.white,
@@ -58,7 +59,9 @@ class HomeView extends StatelessWidget {
                   GameCircularBtn(
                     onTap: () {
                       // game collections view
-                      GoRouter.of(context).pushNamed("gameCollections");
+                      GoRouter.of(
+                        context,
+                      ).pushNamed(RouteConstants.gameCollectionsView);
                     },
                     bgPath: Assets.images.svg.gameCircularBtn,
                     iconPath: Assets.images.svg.bottle,

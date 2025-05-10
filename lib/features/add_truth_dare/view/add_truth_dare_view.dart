@@ -4,6 +4,7 @@ import 'package:truth_dare_game/commons/commons_exports.dart';
 import 'package:truth_dare_game/generators/assets.gen.dart';
 import 'package:truth_dare_game/generators/colors.gen.dart';
 import 'package:truth_dare_game/generators/fonts.gen.dart';
+import 'package:truth_dare_game/core/core_exports.dart';
 
 class AddTruthDareView extends StatelessWidget {
   const AddTruthDareView({super.key});
@@ -22,7 +23,7 @@ class AddTruthDareView extends StatelessWidget {
             children: [
               // App name
               GameOutlinedText(
-                text: "Truth Dare Game",
+                text: AppConstants.appNameText,
                 fontSize: 34,
                 strokeColor: ColorName.primary,
                 fillColor: ColorName.white,
@@ -31,14 +32,14 @@ class AddTruthDareView extends StatelessWidget {
 
               GameVerticalSpacer(height: 40),
 
-              // Add Truth Dare
+              // Add Truth 
               GamePlayRow(
                 circularIconOnTap: () {},
                 btnOnTap: () {
                   // add player view
-                  GoRouter.of(context).pushNamed('addPlayers');
+                  GoRouter.of(context).pushNamed(RouteConstants.addPlayerView);
                 },
-                btnTitle: "Add Truth",
+                btnTitle: AppConstants.addTruthText,
                 circularBtnBgPath: Assets.images.svg.gameCircularBtn,
                 mainBtnBgPath: Assets.images.svg.gameFilledBtn,
                 circularIconPath: Assets.images.svg.add,
@@ -46,11 +47,11 @@ class AddTruthDareView extends StatelessWidget {
 
               GameVerticalSpacer(height: 12),
 
-              // Settings
+              // Add Dare
               GamePlayRow(
                 circularIconOnTap: () {},
                 btnOnTap: () {},
-                btnTitle: "Add Dare",
+                btnTitle: AppConstants.addDareText,
                 circularBtnBgPath: Assets.images.svg.gameCircularBtn,
                 mainBtnBgPath: Assets.images.svg.gameFilledBtn,
                 circularIconPath: Assets.images.svg.add,
@@ -58,11 +59,11 @@ class AddTruthDareView extends StatelessWidget {
 
               GameVerticalSpacer(height: 12),
 
-              // Rate Us
+              // Sound on 
               GamePlayRow(
                 circularIconOnTap: () {},
                 btnOnTap: () {},
-                btnTitle: "Sound On",
+                btnTitle: AppConstants.soundOnText,
                 circularBtnBgPath: Assets.images.svg.gameCircularBtn,
                 mainBtnBgPath: Assets.images.svg.gameFilledBtn,
                 circularIconPath: Assets.images.svg.music,
@@ -74,7 +75,7 @@ class AddTruthDareView extends StatelessWidget {
               GamePlayRow(
                 circularIconOnTap: () {},
                 btnOnTap: () {},
-                btnTitle: "Share",
+                btnTitle: AppConstants.shareText,
                 circularBtnBgPath: Assets.images.svg.gameCircularBtn,
                 mainBtnBgPath: Assets.images.svg.gameFilledBtn,
                 circularIconPath: Assets.images.svg.share,

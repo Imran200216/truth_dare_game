@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:truth_dare_game/commons/commons_exports.dart';
 import 'package:truth_dare_game/features/game_collections/game_collections_exports.dart';
 import 'package:truth_dare_game/generators/assets.gen.dart';
+import 'package:truth_dare_game/core/core_exports.dart';
 
 class GameCollectionsView extends StatelessWidget {
   const GameCollectionsView({super.key});
@@ -29,7 +30,7 @@ class GameCollectionsView extends StatelessWidget {
     return GameScaffold(
       showAppBar: true,
       leadingSvgAsset: Assets.images.svg.back,
-      appBarTitle: "Spinner Collections",
+      appBarTitle: AppConstants.appNameText,
       onLeadingIconPressed: () {
         // back navigation
         GoRouter.of(context).pop();

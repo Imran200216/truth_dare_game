@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:truth_dare_game/commons/commons_exports.dart';
 import 'package:truth_dare_game/core/core_exports.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Hive
+  await Hive.initFlutter();
+
+  // Truth Dare Game
+  await Hive.openBox(AppConstants.hiveDb);
+
   runApp(const MyApp());
 }
 

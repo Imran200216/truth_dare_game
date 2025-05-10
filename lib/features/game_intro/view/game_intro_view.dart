@@ -4,6 +4,7 @@ import 'package:truth_dare_game/commons/commons_exports.dart';
 import 'package:truth_dare_game/generators/assets.gen.dart';
 import 'package:truth_dare_game/generators/colors.gen.dart';
 import 'package:truth_dare_game/generators/fonts.gen.dart';
+import 'package:truth_dare_game/core/core_exports.dart';
 
 class GameIntroView extends StatelessWidget {
   const GameIntroView({super.key});
@@ -20,7 +21,7 @@ class GameIntroView extends StatelessWidget {
           children: [
             // App name
             GameOutlinedText(
-              text: "Truth Dare Game",
+              text: AppConstants.appNameText,
               fontSize: 34,
               strokeColor: ColorName.primary,
               fillColor: ColorName.white,
@@ -38,10 +39,10 @@ class GameIntroView extends StatelessWidget {
             GamePlayRow(
               circularIconOnTap: () {},
               btnOnTap: () {
-                //
-                GoRouter.of(context).pushNamed('userAge');
+                // user age view
+                GoRouter.of(context).pushNamed(RouteConstants.userAgeView);
               },
-              btnTitle: "Let's Play",
+              btnTitle: AppConstants.letsPlayText,
               mainBtnBgPath: Assets.images.svg.gameFilledBtn,
               circularBtnBgPath: Assets.images.svg.gameCircularBtn,
               circularIconPath: Assets.images.svg.play,
@@ -53,7 +54,7 @@ class GameIntroView extends StatelessWidget {
             GamePlayRow(
               circularIconOnTap: () {},
               btnOnTap: () {},
-              btnTitle: "Settings",
+              btnTitle: AppConstants.settingsText,
               mainBtnBgPath: Assets.images.svg.gameFilledBtn,
               circularBtnBgPath: Assets.images.svg.gameCircularBtn,
               circularIconPath: Assets.images.svg.settings,
@@ -65,7 +66,7 @@ class GameIntroView extends StatelessWidget {
             GamePlayRow(
               circularIconOnTap: () {},
               btnOnTap: () {},
-              btnTitle: "Rate Us",
+              btnTitle: AppConstants.rateUsText,
               mainBtnBgPath: Assets.images.svg.gameFilledBtn,
               circularBtnBgPath: Assets.images.svg.gameCircularBtn,
               circularIconPath: Assets.images.svg.star,

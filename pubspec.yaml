@@ -34,15 +34,26 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+
   # Go Router
   go_router: ^15.1.1
+
   # state management
   provider: ^6.1.5
+  flutter_bloc: ^9.1.1
+
   # local storage
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+
   # svg
   flutter_svg: ^2.1.0
+
+  # equatable:
+  equatable: ^2.0.7
+
+
+
 
 
 
@@ -59,8 +70,10 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   # flutter gen generator
   flutter_gen_runner: ^5.10.0
+
   # build runner
   build_runner: ^2.4.15
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

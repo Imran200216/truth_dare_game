@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
 import 'package:truth_dare_game/generators/assets.gen.dart';
 import 'package:truth_dare_game/generators/colors.gen.dart';
 import 'package:truth_dare_game/generators/fonts.gen.dart';
@@ -15,7 +16,7 @@ class AddPlayersView extends StatefulWidget {
 }
 
 class _AddPlayersViewState extends State<AddPlayersView> {
-  // controllers
+  // controller
   final TextEditingController playerNameController = TextEditingController();
 
   // form key
@@ -33,14 +34,14 @@ class _AddPlayersViewState extends State<AddPlayersView> {
       backgroundImagePath: Assets.images.png.splash.path,
       child: Align(
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+          margin: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Add Player Text
+              // App Title
               GameOutlinedText(
-                text: "Truth Dare Game",
+                text: AppConstants.appNameText,
                 fontSize: 34,
                 strokeColor: ColorName.primary,
                 fillColor: ColorName.white,
@@ -49,13 +50,12 @@ class _AddPlayersViewState extends State<AddPlayersView> {
 
               GameVerticalSpacer(height: 20),
 
-              // add person text field
+              // Text field + add button
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 14,
                 children: [
-                  // Add person game text field
+                  // Name field
                   GameTextField(
                     controller: playerNameController,
                     validator: AppValidator.validateName,
@@ -66,9 +66,28 @@ class _AddPlayersViewState extends State<AddPlayersView> {
                     backgroundSvgPath: Assets.images.svg.addPersonTextField,
                   ),
 
-                  // Add circular btn
+                  const SizedBox(width: 14),
+
+                  // Add player button
                   GameCircularBtn(
-                    onTap: () {},
+                    onTap: () async {
+                      final name = playerNameController.text.trim();
+                      if (name.isEmpty) return;
+
+                      final box = await Hive.openBox(AppConstants.hiveDb);
+
+                      List<String> currentPlayers = box
+                          .get('gamePlayers', defaultValue: [])
+                          .cast<String>();
+
+                      if (!currentPlayers.contains(name) &&
+                          currentPlayers.length < 4) {
+                        currentPlayers.add(name);
+                        await box.put('gamePlayers', currentPlayers);
+                        playerNameController.clear();
+                        setState(() {});
+                      }
+                    },
                     bgPath: Assets.images.svg.gameCircularBtn,
                     iconPath: Assets.images.svg.add,
                     iconHeight: 30,
@@ -79,60 +98,58 @@ class _AddPlayersViewState extends State<AddPlayersView> {
 
               GameVerticalSpacer(height: 20),
 
-              // Add Players
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 10,
-                children: [
-                  // Player 1
-                  GamePlayRow(
-                    circularIconOnTap: () {},
-                    btnOnTap: () {},
-                    btnTitle: "Badri",
-                    mainBtnBgPath: Assets.images.svg.addPlayerBtn,
-                    mainBtnHeight: 68,
-                    mainBtnWidth: 302,
-                    circularBtnBgPath: Assets.images.svg.gameDeleteCircularBtn,
-                    circularIconPath: Assets.images.svg.delete,
-                    isCircularBtnAtEnd: true,
-                  ),
+              // Player List
+              FutureBuilder(
+                future: Hive.openBox(AppConstants.hiveDb),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  }
 
-                  // Player 2
-                  GamePlayRow(
-                    circularIconOnTap: () {},
-                    btnOnTap: () {},
-                    btnTitle: "Imran",
-                    mainBtnBgPath: Assets.images.svg.addPlayerBtn,
-                    mainBtnHeight: 68,
-                    mainBtnWidth: 302,
-                    circularBtnBgPath: Assets.images.svg.gameDeleteCircularBtn,
-                    circularIconPath: Assets.images.svg.delete,
-                    isCircularBtnAtEnd: true,
-                  ),
+                  final box = snapshot.data as Box;
+                  List<String> players = box
+                      .get('gamePlayers', defaultValue: [])
+                      .cast<String>();
 
-                  // Player 2
-                  GamePlayRow(
-                    circularIconOnTap: () {},
-                    btnOnTap: () {},
-                    btnTitle: "Sanjev",
-                    mainBtnBgPath: Assets.images.svg.addPlayerBtn,
-                    mainBtnHeight: 68,
-                    mainBtnWidth: 302,
-                    circularBtnBgPath: Assets.images.svg.gameDeleteCircularBtn,
-                    circularIconPath: Assets.images.svg.delete,
-                    isCircularBtnAtEnd: true,
-                  ),
-                ],
+                  if (players.isEmpty) {
+                    return const SizedBox.shrink();
+                  }
+
+                  return Column(
+                    spacing: 12,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ...players.map(
+                        (player) => GamePlayRow(
+                          circularIconOnTap: () async {
+                            players.remove(player);
+                            await box.put('gamePlayers', players);
+                            setState(() {});
+                          },
+                          btnOnTap: () {},
+                          btnTitle: player,
+                          mainBtnBgPath: Assets.images.svg.addPlayerBtn,
+                          mainBtnHeight: 68,
+                          mainBtnWidth: 302,
+                          circularBtnBgPath:
+                              Assets.images.svg.gameDeleteCircularBtn,
+                          circularIconPath: Assets.images.svg.delete,
+                          isCircularBtnAtEnd: true,
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
 
               const Spacer(),
 
+              // Navigation buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Back btn
                   GameCircularBtn(
                     onTap: () {
                       GoRouter.of(context).pop();
@@ -143,11 +160,12 @@ class _AddPlayersViewState extends State<AddPlayersView> {
                     iconHeight: 40,
                     iconWidth: 34,
                   ),
-
-                  // Play btn
                   GameCircularBtn(
                     onTap: () {
-                      GoRouter.of(context).pushReplacementNamed("home");
+                      // home view
+                      GoRouter.of(
+                        context,
+                      ).pushReplacementNamed(RouteConstants.homeView);
                     },
                     bgPath: Assets.images.svg.gameCircularBtn,
                     iconPath: Assets.images.svg.play,

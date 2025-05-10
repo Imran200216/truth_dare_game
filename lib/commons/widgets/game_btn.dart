@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
-import 'package:truth_dare_game/commons/commons_exports.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:truth_dare_game/commons/widgets/game_outlined_text.dart';
+import 'package:truth_dare_game/core/helper/haptic_helper.dart';
 
 class GameBtn extends StatelessWidget {
   final String btnTitle;
@@ -29,44 +29,36 @@ class GameBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => GameBtnProvider(),
-      child: Consumer<GameBtnProvider>(
-        builder: (context, btnProvider, _) {
-          return GestureDetector(
-            onTapDown: (_) => btnProvider.onTapDown(),
-            onTapUp: (_) => btnProvider.onTapUp(onTap),
-            onTapCancel: () => btnProvider.onTapCancel(),
-            child: AnimatedScale(
-              scale: btnProvider.scale,
-              duration: const Duration(milliseconds: 100),
-              curve: Curves.easeOut,
-              child: SizedBox(
-                height: height,
-                width: width,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      btnPath,
-                      height: height,
-                      width: width,
-                      fit: BoxFit.contain,
-                    ),
-                    GameOutlinedText(
-                      hasStroke: false,
-                      text: btnTitle,
-                      fontSize: btnFontSize,
-                      strokeColor: btnTitleStrokeColor,
-                      fillColor: btnTitleFillColor,
-                      fontFamily: fontFamily,
-                    ),
-                  ],
-                ),
-              ),
+    return InkWell(
+      onTap: () {
+        HapticHelper.vibrate();
+        onTap();
+      },
+      borderRadius: BorderRadius.circular(12),
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            SvgPicture.asset(
+              btnPath,
+              height: height,
+              width: width,
+              fit: BoxFit.contain,
             ),
-          );
-        },
+            GameOutlinedText(
+              hasStroke: false,
+              text: btnTitle,
+              fontSize: btnFontSize,
+              strokeColor: btnTitleStrokeColor,
+              fillColor: btnTitleFillColor,
+              fontFamily: fontFamily,
+            ),
+          ],
+        ),
       ),
     );
   }

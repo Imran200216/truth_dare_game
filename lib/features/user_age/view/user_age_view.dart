@@ -4,6 +4,7 @@ import 'package:truth_dare_game/commons/commons_exports.dart';
 import 'package:truth_dare_game/generators/assets.gen.dart';
 import 'package:truth_dare_game/generators/colors.gen.dart';
 import 'package:truth_dare_game/generators/fonts.gen.dart';
+import 'package:truth_dare_game/core/core_exports.dart';
 
 class UserAgeView extends StatelessWidget {
   const UserAgeView({super.key});
@@ -20,7 +21,7 @@ class UserAgeView extends StatelessWidget {
           children: [
             // App name
             GameOutlinedText(
-              text: "Truth Dare Game",
+              text: AppConstants.appNameText,
               fontSize: 34,
               strokeColor: ColorName.primary,
               fillColor: ColorName.white,
@@ -34,14 +35,14 @@ class UserAgeView extends StatelessWidget {
 
             GameVerticalSpacer(height: 46),
 
-            // Let's play
+            // Kids
             GamePlayRow(
               circularIconOnTap: () {},
               btnOnTap: () {
                 // Add Truth Or Dare View
-                GoRouter.of(context).pushNamed('addTruthDare');
+                GoRouter.of(context).pushNamed(RouteConstants.addTruthDareView);
               },
-              btnTitle: "kids",
+              btnTitle: AppConstants.kidsText,
               mainBtnBgPath: Assets.images.svg.gameFilledBtn,
               circularBtnBgPath: Assets.images.svg.gameCircularBtn,
               circularIconPath: Assets.images.svg.kids,
@@ -49,11 +50,11 @@ class UserAgeView extends StatelessWidget {
 
             GameVerticalSpacer(height: 12),
 
-            // Settings
+            // Teens
             GamePlayRow(
               circularIconOnTap: () {},
               btnOnTap: () {},
-              btnTitle: "Teens",
+              btnTitle: AppConstants.teensText,
               mainBtnBgPath: Assets.images.svg.gameFilledBtn,
               circularBtnBgPath: Assets.images.svg.gameCircularBtn,
               circularIconPath: Assets.images.svg.teens,
@@ -61,11 +62,11 @@ class UserAgeView extends StatelessWidget {
 
             GameVerticalSpacer(height: 12),
 
-            // Rate Us
+            // Adults
             GamePlayRow(
               circularIconOnTap: () {},
               btnOnTap: () {},
-              btnTitle: "Adults",
+              btnTitle: AppConstants.adultsText,
               mainBtnBgPath: Assets.images.svg.gameFilledBtn,
               circularBtnBgPath: Assets.images.svg.gameCircularBtn,
               circularIconPath: Assets.images.svg.adults,
@@ -73,6 +74,7 @@ class UserAgeView extends StatelessWidget {
 
             GameVerticalSpacer(height: 22),
 
+            // back btn
             GameCircularBtn(
               onTap: () {
                 GoRouter.of(context).pop();
